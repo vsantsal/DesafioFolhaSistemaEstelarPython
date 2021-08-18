@@ -1,4 +1,4 @@
-from avaliador import Avaliador
+from src.avaliador import Avaliador
 
 """
 Levados do planeta Terra por uma nave alienígena, um grupo de 75 engenheiros 
@@ -18,19 +18,24 @@ que a quantidade de engenheiros, a estrela de destino será conhecida.
 Qual estrela será o destino da espaçonave?
 """
 
-def main():    
+
+def main():
+    # definimos número de passageiros
+    num_passageiros = 75
+
+    # lista de estrelas próximas
+    estrelas = ['SIRIUS', 'LALANDE', 'PROCION', 'ALPHA CENTAURI', 'BARNARD']
 
     # solicitamos a um dos engenheiros para ser o avaliador
     engenheiro = Avaliador()
 
     # engenheiro avalia e retorna sua avaliação
-    avaliacao = engenheiro.avalia()
+    avaliacao = engenheiro.avalia(numero_de_passageiros=num_passageiros,
+                                  relacao_estrelas=estrelas)
 
     # avaliação é retornada na tela
     print(f"A estrela destino da espaçonave será {avaliacao}")
 
-# se algum erro ocorrer, retorna o erro na tela
-try:
+
+if __name__ == '__main__':
     main()
-except Exception as e:    
-    print(e)

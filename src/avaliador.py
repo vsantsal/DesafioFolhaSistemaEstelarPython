@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.9
 """
 Classe responsável por executar a regra de negócio RN1 para descobrir o destino
 da espaçonave
@@ -10,17 +11,21 @@ que a quantidade de engenheiros, a estrela de destino será conhecida.
 
 """
 
-from metricas import Balanca, Calculadora
-from viagem import Nave, SistemaEstelar
+from typing import List
+
+from src.metricas import Balanca, Calculadora
+from src.viagem import Nave, SistemaEstelar
+
 
 class Avaliador:
 
-    def avalia(self):
+    @staticmethod
+    def avalia(numero_de_passageiros: int, relacao_estrelas: List[str]):
         # instanciando a nave do problema
-        nave = Nave()
+        nave = Nave(numero_de_passageiros=numero_de_passageiros)
 
         # instanciando o sistema estelar do problema
-        sistema_estelar = SistemaEstelar()
+        sistema_estelar = SistemaEstelar(estrelas=relacao_estrelas)
 
         # instanciando a Calculadora para avaliação
         calculadora = Calculadora()
@@ -28,7 +33,7 @@ class Avaliador:
         # instanciando a Balança
         balanca = Balanca()
         
-        for estrela in sistema_estelar.get_estrelas():
+        for estrela in sistema_estelar.estrelas:
 
             # para cada elemento da lista de destino, comparar com o número de passageiros n
             # retorna o nome da estrela cujo processamento pela RN1 é igual a n
